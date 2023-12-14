@@ -9,10 +9,10 @@ export const typeDefs = `#graphql
   }
 
   type Card { 
-    number: String!
-    cvv: String!
+    number: Number!
+    cvv: Number!
     expirity: String!
-    money: Float!
+    money: Number!
   }
 
   type Driver {
@@ -27,8 +27,8 @@ export const typeDefs = `#graphql
     id: ID!
     client: Client!
     driver: Driver!
-    money: Float!
-    distance: Float!
+    money: Number!
+    distance: Number!
     date: String!
     status: Status
   }

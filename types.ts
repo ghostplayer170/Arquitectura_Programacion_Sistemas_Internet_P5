@@ -1,4 +1,3 @@
-
 export type Client = {
     id: string;
     name: string;
@@ -8,8 +7,8 @@ export type Client = {
 };
 
 export type Card = {
-    number: string;
-    cvv: string;
+    number: number;
+    cvv: number;
     expirity: string;
     money: number;
 };
