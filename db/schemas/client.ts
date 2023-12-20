@@ -1,5 +1,7 @@
 import mongoose from "npm:mongoose@7.6.3";
 import { Client } from "../../types.ts";
+import { validatorsClient } from "../validators/valClient.ts";
+import cardPreSave from "../middlewares/cardPreSave.ts";
 
 export type ClientModelType =
   & mongoose.Document
@@ -33,3 +35,23 @@ export const ClientModel = mongoose.model<ClientModelType>(
   "Client",
   ClientSchema,
 );
+
+// Validate name format (only letters and spaces) and length (2-30)
+ClientSchema.path("name").validate(
+  validatorsClient.nameFormat,
+  "Name must be between 2 and 30 characters",
+);
+
+// Validate if card exists in ClientModel
+ClientSchema.path("email").validate(
+  validatorsClient.emailExists,
+  "Email already registered",
+);
+
+// Validate email format (email@domain)
+ClientSchema.path("email").validate(
+  validatorsClient.emailFormat,
+  "Email format is invalid, please use this format email@domain",
+);
+
+ClientSchema.pre("save", cardPreSave);

@@ -1,5 +1,6 @@
 import mongoose from "npm:mongoose@7.6.3";
 import { Status, Travel } from "../../types.ts";
+import { validatorsTravel } from "../validators/valTravel.ts";
 
 export type TravelModelType =
   & mongoose.Document
@@ -31,4 +32,46 @@ const TravelSchema = new Schema(
 export const TravelModel = mongoose.model<TravelModelType>(
   "Travel",
   TravelSchema,
+);
+
+// Validate if clientID exists in ClientModel
+TravelSchema.path("client").validate(
+  validatorsTravel.clientIDExists,
+  "Client ID does not exist",
+);  
+
+// Validate if driverID exists in DriverModel
+TravelSchema.path("driver").validate(
+  validatorsTravel.driverIDExists,
+  "Driver ID does not exist",
+);
+
+// Validate money, must be greater or equal than 5
+TravelSchema.path("money").validate(
+  validatorsTravel.moneyMin,
+  "Money must be greater or equal than 5",
+);
+
+// Validate distance, must be greater or equal than 0.01
+TravelSchema.path("distance").validate(
+  validatorsTravel.distanceMin,
+  "Distance must be greater or equal than 0.01km",
+);
+
+// Validate date format is DD-MM-YYYY
+TravelSchema.path("date").validate(
+  validatorsTravel.dateFormat,
+  "Date format must be DD-MM-YYYY",
+);
+
+// Validate date is greater or equal than current date
+TravelSchema.path("date").validate(
+  validatorsTravel.dateValid,
+  "Date must be greater or equal than current date",
+);
+
+// Validate status is Status enum value
+TravelSchema.path("status").validate(
+  validatorsTravel.statusValid,
+  "Status must be IN_PROGRESS or FINISHED",
 );

@@ -3,6 +3,7 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 import mongoose from "npm:mongoose@7.6.3";
 import { load } from "https://deno.land/std@0.204.0/dotenv/mod.ts"; // Leer variables de entorno
 import { typeDefs } from "./gql/schema.ts";
+import { resolvers } from "./resolvers/index.ts";
 
 const env = await load(); // Carga Variables de entorno
 
@@ -25,6 +26,7 @@ try{
 }
 
 const server = new ApolloServer({
+  resolvers: resolvers,
   typeDefs: typeDefs,
 });
 
