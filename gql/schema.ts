@@ -1,11 +1,11 @@
 // The GraphQL schema
 export const typeDefs = `#graphql
   type Client { 
-    id: ID!
+    id: ID
     name: String!
     email: String!
-    cards: [Card!]!
-    travels: [Travel!]!
+    cards: [Card!]
+    travels: [Travel!]
   }
 
   type Card { 

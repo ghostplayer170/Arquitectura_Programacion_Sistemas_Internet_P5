@@ -10,7 +10,7 @@ const nameFormat = (name: string) => {
 const emailExists = async (email: string) => {
   try {
     const client = await ClientModel.findOne({ email }).exec();
-    return !!client;
+    return !!client!;
   } catch (_e) {
     return false;
   }
