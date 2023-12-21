@@ -34,8 +34,8 @@ export const typeDefs = `#graphql
   }
 
   type Query { # Endpoints
-    getDlients: [Client!]!
-    getDlient(id: ID!): Client!
+    getClients: [Client!]!
+    getClient(id: ID!): Client!
 
     getDrivers: [Driver!]!
     getDriver(id: ID!): Driver!
