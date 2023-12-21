@@ -26,7 +26,7 @@ try{
 }
 
 const server = new ApolloServer({
-  //resolvers: resolvers,
+  resolvers: resolvers,
   typeDefs: typeDefs,
 });
 
