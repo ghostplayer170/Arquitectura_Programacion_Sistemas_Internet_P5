@@ -10,7 +10,7 @@ const nameFormat = (name: string) => {
 const emailExists = async (email: string) => {
   try {
     const client = await ClientModel.findOne({ email }).exec();
-    if(client) return false;
+    if (client) return false;
     return true;
   } catch (_e) {
     return false;
@@ -35,7 +35,7 @@ const cardExists = async (number: number) => {
   }
 };
 
-// Validate card number format (16 digits) 
+// Validate card number format (16 digits)
 const cardNumberFormat = (number: number) => {
   const re = /^[0-9]{16}$/;
   return re.test(number.toString());
@@ -47,7 +47,7 @@ const cardCvvFormat = (cvv: number) => {
   return re.test(cvv.toString());
 };
 
-// Validate card expirity Format: MM/YYYY (MM: 01-12, YYYY) 
+// Validate card expirity Format: MM/YYYY (MM: 01-12, YYYY)
 const cardExpirityFormat = (expirity: string) => {
   const re = /^(0[1-9]|1[0-2])\/([0-9]{4})$/;
   return re.test(expirity);

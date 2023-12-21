@@ -16,7 +16,8 @@ const emailFormat = (email: string) => {
 const emailExists = async (email: string) => {
   try {
     const driver = await DriverModel.findOne({ email }).exec();
-    return !!driver;
+    if (driver) return false;
+    return true;
   } catch (_e) {
     return false;
   }
@@ -26,7 +27,8 @@ const emailExists = async (email: string) => {
 const usernameExists = async (username: string) => {
   try {
     const driver = await DriverModel.findOne({ username }).exec();
-    return !!driver;
+    if (driver) return false;
+    return true;
   } catch (_e) {
     return false;
   }
