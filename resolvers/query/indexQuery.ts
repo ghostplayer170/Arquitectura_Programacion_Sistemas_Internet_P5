@@ -6,10 +6,12 @@ import getTravel from "./getTravel.ts";
 import getTravels from "./getTravels.ts";
 
 export const Query = {
-  getClient,
-  getClients,
-  getDriver,
-  getDrivers,
-  getTravel,
-  getTravels,
-};
+  Query: { 
+    getClient,
+    getClients,
+    getDriver,
+    getDrivers,
+    getTravel,
+    getTravels,
+  },
+}

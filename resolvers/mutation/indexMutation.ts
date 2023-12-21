@@ -8,13 +8,14 @@ import finishTravel from "./finishTravel.ts";
 import deleteCard from "./deleteCard.ts";
 
 export const Mutation = {
-  addCard,
-  addClient,
-  deleteClient,
-  addDriver,
-  deleteDriver,
-  addTravel,
-  finishTravel,
-  deleteCard,
-};
-    
+  Mutation: {
+    addCard,
+    addClient,
+    deleteClient,
+    addDriver,
+    deleteDriver,
+    addTravel,
+    finishTravel,
+    deleteCard,
+  }, 
+}
