@@ -34,21 +34,21 @@ export const typeDefs = `#graphql
   }
 
   type Query { # Endpoints
-    clients: [Client!]!
-    client(id: ID!): Client!
+    getDlients: [Client!]!
+    getDlient(id: ID!): Client!
 
-    drivers: [Driver!]!
-    driver(id: ID!): Driver!
+    getDrivers: [Driver!]!
+    getDriver(id: ID!): Driver!
 
-    travels: [Travel!]!
-    travel(id: ID!): Travel!
+    getTravels: [Travel!]!
+    getTravel(id: ID!): Travel!
   }
 
   type Mutation { # Endpoints
-    createClient(name: String!, email: String!): Client!
+    addClient(name: String!, email: String!): Client!
     deleteClient(id: ID!): Client!
 
-    createDriver(name: String!, email: String!, username: String!): Driver!
+    addDriver(name: String!, email: String!, username: String!): Driver!
     deleteDriver(id: ID!): Driver!
 
     addCard(number: Int!, cvv: Int!, expirity: String!, money: Float!): Client!
