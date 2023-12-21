@@ -1,4 +1,3 @@
-import mongoose from "npm:mongoose@7.6.3";
 import { DriverModel } from "../schemas/driver.ts";
 
 // Validate name format (only letters and spaces) and length (2-30)

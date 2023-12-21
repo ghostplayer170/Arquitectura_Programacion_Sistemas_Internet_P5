@@ -2,9 +2,8 @@
 import { DriverModelType } from "../schemas/driver.ts"
 import { GraphQLError } from "graphql"
 import { TravelModel } from "../schemas/travel.ts";
-import { DriverModel } from "../schemas/driver.ts";
 
-export const DriverPostDelete = async function (this: DriverModelType){
+export const driverPostDelete = async function (this: DriverModelType){
     try {
         await TravelModel.updateMany(
             { _id: { $in: this.travels } },

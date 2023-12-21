@@ -1,6 +1,7 @@
 import mongoose from "npm:mongoose@7.6.3";
 import { Driver } from "../../types.ts";
 import { validatorsDriver } from "../validators/valDriver.ts";
+import { driverPostDelete } from "../middlewares/midDriver.ts";
 
 export type DriverModelType =
   & mongoose.Document
@@ -52,3 +53,5 @@ DriverSchema.path("username").validate(
   "Username already registered",
 );
 
+// Middleware for delete all travels of a driver before delete
+DriverSchema.post("findOneAndDelete", driverPostDelete);

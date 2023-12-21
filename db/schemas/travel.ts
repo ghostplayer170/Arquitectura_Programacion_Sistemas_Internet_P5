@@ -1,6 +1,7 @@
 import mongoose from "npm:mongoose@7.6.3";
 import { Status, Travel } from "../../types.ts";
 import { validatorsTravel } from "../validators/valTravel.ts";
+import { travelPostSave, travelPostUpdate, travelPreSave } from "../middlewares/midTravel.ts";
 
 export type TravelModelType =
   & mongoose.Document
@@ -75,3 +76,12 @@ TravelSchema.path("status").validate(
   validatorsTravel.statusValid,
   "Status must be IN_PROGRESS or FINISHED",
 );
+
+// Middleware for validate a travel before save
+TravelSchema.pre("save", travelPreSave);
+
+// Middleware for save travel ID in client and driver
+TravelSchema.post("save", travelPostSave);
+
+// Middleware for delete travel ID in client and driver
+TravelSchema.post("findOneAndUpdate", travelPostUpdate);

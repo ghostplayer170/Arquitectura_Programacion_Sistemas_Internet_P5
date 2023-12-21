@@ -46,7 +46,7 @@ export const cardPreSave = async function (
   }
 };
 
-const clientPostDelete = async function (this: ClientModelType) {
+export const clientPostDelete = async function (this: ClientModelType) {
     try {
         await TravelModel.updateMany(
             { _id: { $in: this.travels } }, 
@@ -56,4 +56,3 @@ const clientPostDelete = async function (this: ClientModelType) {
         throw new GraphQLError(`Error: ${error}`);
     }
 }
-export default cardPreSave;

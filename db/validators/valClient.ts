@@ -1,6 +1,4 @@
-import mongoose from "npm:mongoose@7.6.3";
 import { ClientModel } from "../schemas/client.ts";
-import { Card } from "../../types.ts";
 
 // Validate name format (only letters and spaces) and length (2-30)
 const nameFormat = (name: string) => {

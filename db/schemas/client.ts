@@ -1,7 +1,7 @@
 import mongoose from "npm:mongoose@7.6.3";
 import { Client } from "../../types.ts";
 import { validatorsClient } from "../validators/valClient.ts";
-import cardPreSave from "../middlewares/cardPreSave.ts";
+import { cardPreSave, clientPostDelete } from "../middlewares/midClient.ts";
 
 export type ClientModelType =
   & mongoose.Document
@@ -54,4 +54,8 @@ ClientSchema.path("email").validate(
   "Email format is invalid, please use this format email@domain",
 );
 
+// Middleware for validate a card before save
 ClientSchema.pre("save", cardPreSave);
+
+// Middleware for delete all travels of a client before delete
+ClientSchema.post("findOneAndDelete", clientPostDelete);
