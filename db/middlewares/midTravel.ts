@@ -10,6 +10,9 @@ export const travelPreSave = async function (
   try {
     const driver = await DriverModel.findById(this.driver).exec();
     const client = await ClientModel.findById(this.client).exec();
+    if(client?.cards === undefined){
+       throw new GraphQLError(`Error: Client ${this.client} has no cards`);
+    }
     if (client?.cards.some((card) => card.money > this.money)) {
       throw new GraphQLError(
         `Error: Client ${this.client} has no card with enough money`,

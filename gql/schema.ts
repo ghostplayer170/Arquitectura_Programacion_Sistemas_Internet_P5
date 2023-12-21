@@ -55,6 +55,6 @@ export const typeDefs = `#graphql
     deleteCard(id: ID!, number: String!): Client!
 
     addTravel(client: ID!, driver: ID!, money: Float!, distance: Float!, date: String!): Travel!
-    finishTravel(id: ID!, status: String!): Travel!
+    finishTravel(id: ID!): Travel!
   }
 `;
