@@ -26,7 +26,7 @@ const TravelSchema = new Schema(
     money: { type: Number, min: 5, required: true },
     distance: { type: Number, min: 0.01, required: true },
     date: { type: String, required: true },
-    status: { type: Status, enum: Status, required: false, default: "IN_PROGRESS" },
+    status: { type: Status, enum: Status, required: false, default: Status.IN_PROGRESS },
   },
 );
 
