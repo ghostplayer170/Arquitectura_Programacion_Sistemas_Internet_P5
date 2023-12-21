@@ -7,11 +7,11 @@ import getTravels from "./getTravels.ts";
 
 export const Query = {
   Query: { 
-    getClient,
-    getClients,
-    getDriver,
-    getDrivers,
-    getTravel,
-    getTravels,
+    ...getClient.Query,
+    ...getClients.Query,
+    ...getDriver.Query,
+    ...getDrivers.Query,
+    ...getTravel.Query,
+    ...getTravels.Query,
   },
 }

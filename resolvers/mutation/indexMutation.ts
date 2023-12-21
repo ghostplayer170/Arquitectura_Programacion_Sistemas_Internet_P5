@@ -9,13 +9,13 @@ import deleteCard from "./deleteCard.ts";
 
 export const Mutation = {
   Mutation: {
-    addCard,
-    addClient,
-    deleteClient,
-    addDriver,
-    deleteDriver,
-    addTravel,
-    finishTravel,
-    deleteCard,
+    ...addCard.Mutation,
+    ...addClient.Mutation,
+    ...deleteClient.Mutation,
+    ...addDriver.Mutation,
+    ...deleteDriver.Mutation,
+    ...addTravel.Mutation,
+    ...finishTravel.Mutation,
+    ...deleteCard.Mutation,
   }, 
 }
