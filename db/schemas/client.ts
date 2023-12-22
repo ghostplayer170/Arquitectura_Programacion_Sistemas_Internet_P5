@@ -64,4 +64,4 @@ ClientSchema.path("email").validate(
 ClientSchema.pre("save", cardPreSave);
 
 // Middleware for delete all travels of a client before delete
-ClientSchema.post("findOneAndDelete", clientPostDelete);
+ClientSchema.post("save", clientPostDelete);

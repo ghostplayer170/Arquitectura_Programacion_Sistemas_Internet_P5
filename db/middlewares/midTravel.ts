@@ -14,7 +14,7 @@ export const travelPreSave = async function (
         throw new GraphQLError(`Error: Driver ${this.driver} does not exist`);
       }
       if (driver.travels.length > 0) {
-        const lastTravelID = driver?.travels[driver?.travels.length - 1];
+        const lastTravelID = driver.travels[driver.travels.length - 1];
         const lastTravel = await TravelModel.findById(lastTravelID).exec();
         if (lastTravel?.status === "IN_PROGRESS") {
           throw new GraphQLError(
@@ -37,7 +37,7 @@ export const travelPreSave = async function (
         );
       }
       if (client.travels.length > 0) {
-        const lastTravelID = client?.travels[client?.travels.length - 1];
+        const lastTravelID = client.travels[client.travels.length - 1];
         const lastTravel = await TravelModel.findById(lastTravelID).exec();
         if (lastTravel?.status === "IN_PROGRESS") {
           throw new GraphQLError(
@@ -54,14 +54,20 @@ export const travelPreSave = async function (
 
 export const travelPostSave = async function (this: TravelModelType) {
   try {
-    await DriverModel.updateOne(
+    const driverUpdated = await DriverModel.updateOne(
       { _id: this.driver },
       { $push: { travels: this._id } },
     );
-    await ClientModel.updateOne(
+    const clientUpdated = await ClientModel.updateOne(
       { _id: this.client },
       { $push: { travels: this._id } },
     );
+    if (!clientUpdated) {
+      throw new GraphQLError(`Error: Client ${this.client} does not exist`);
+    }
+    if (!driverUpdated) {
+      throw new GraphQLError(`Error: Driver ${this.driver} does not exist`);
+    }
   } catch (error) {
     throw new GraphQLError(`Error: ${error}`);
   }
