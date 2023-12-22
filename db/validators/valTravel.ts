@@ -6,8 +6,8 @@ import { Status } from "../../types.ts";
 // Validate if clientID exists in ClientModel
 const clientIDExists = async (clientID: mongoose.Types.ObjectId) => {
   try {
-    const travel = await ClientModel.findById(clientID).exec();
-    return !!travel;
+    const client = await ClientModel.findById(clientID).exec();
+    return !!client;
   } catch (_e) {
     return false;
   }

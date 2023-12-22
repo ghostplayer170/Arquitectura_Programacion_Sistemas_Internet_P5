@@ -15,12 +15,15 @@ const DriverSchema = new Schema(
     name: { type: String, required: true },
     email: { type: String, required: true },
     username: { type: String, unique: true, required: true },
-    travels: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Travel",
-      },
-    ],
+    travels: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Travel",
+        },
+      ],
+      default: [],
+    },
   },
 );
 

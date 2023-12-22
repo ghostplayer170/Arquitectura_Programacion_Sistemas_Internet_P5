@@ -14,20 +14,26 @@ const ClientSchema = new Schema(
   {
     name: { type: String, required: true },
     email: { type: String, required: true },
-    cards: [
-      {
-        number: { type: Number, required: true },
-        cvv: { type: Number, required: true },
-        expirity: { type: String, required: true },
-        money: { type: Number, required: true },
-      },
-    ],
-    travels: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Travel",
-      },
-    ],
+    cards: {
+      type: [
+        {
+          number: { type: Number, required: true },
+          cvv: { type: Number, required: true },
+          expirity: { type: String, required: true },
+          money: { type: Number, required: true },
+        },
+      ],
+      default: [],
+    },
+    travels: {
+      type: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Travel",
+        },
+      ],
+      default: [],
+    },
   },
 );
 
