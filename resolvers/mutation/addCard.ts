@@ -6,7 +6,7 @@ const addCard = {
     addCard: async (
       _: unknown,
       args: {
-        idClient: string;
+        client: string;
         number: number;
         cvv: number;
         expirity: string;
@@ -14,7 +14,7 @@ const addCard = {
       },
     ): Promise<ClientModelType> => {
       try {
-        const id = args.idClient;
+        const id = args.client;
         const Card = {
           number: args.number,
           cvv: args.cvv,
