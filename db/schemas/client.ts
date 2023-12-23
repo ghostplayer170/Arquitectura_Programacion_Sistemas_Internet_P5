@@ -1,7 +1,7 @@
 import mongoose from "npm:mongoose@7.6.3";
 import { Client } from "../../types.ts";
 import { validatorsClient } from "../validators/valClient.ts";
-import { cardPreSave, clientPostDelete, clientPreDelete } from "../middlewares/midClient.ts";
+import { cardPreSave, clientPostDelete } from "../middlewares/midClient.ts";
 
 export type ClientModelType =
   & mongoose.Document
@@ -60,9 +60,6 @@ ClientSchema.pre("save", cardPreSave);
 
 // Middleware for delete all travels of a client before delete
 ClientSchema.post("save", clientPostDelete);
-
-// Middleware for verify if client has travels in progress before delete
-ClientSchema.post("findOneAndDelete", clientPreDelete);
 
 export const ClientModel = mongoose.model<ClientModelType>(
   "Client",

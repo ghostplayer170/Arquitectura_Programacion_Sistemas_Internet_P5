@@ -58,29 +58,3 @@ export const clientPostDelete = async function (this: ClientModelType) {
     throw new GraphQLError(`Error: ${error}`);
   }
 };
-
-export const clientPreDelete = function (
-  this: ClientModelType,
-  next: () => void,
-) {
-  try {
-    if (this.travels) {
-      Promise.all(this.travels.map(async (travelID) => {
-        const travel = await TravelModel.findById(travelID).exec();
-        if (!travel) {
-          throw new GraphQLError(`Error: Travel ${travelID} does not exist`);
-        }
-        if (travel.status === "IN_PROGRESS") {
-          throw new GraphQLError(
-            `Error: Client ${this._id} has a travel in progress`,
-          );
-        }
-      }));
-      next();
-    } else {
-      next();
-    }
-  } catch (error) {
-    throw new GraphQLError(`Error: ${error}`);
-  }
-};
