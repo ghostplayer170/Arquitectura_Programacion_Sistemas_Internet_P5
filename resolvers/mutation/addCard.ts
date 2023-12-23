@@ -7,7 +7,7 @@ const addCard = {
       _: unknown,
       args: {
         client: string;
-        number: number;
+        number: string;
         cvv: number;
         expirity: string;
         money: number;
