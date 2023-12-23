@@ -1,12 +1,12 @@
 import { GraphQLError } from "graphql";
-import { ClientModel } from "../../db/schemas/client.ts";
+import { ClientModel, ClientModelType } from "../../db/schemas/client.ts";
 
 const deleteClient = {
   Mutation: {
     deleteClient: async (
       _: unknown,
       args: { id: string },
-    ): Promise<{id: string}> => {
+    ): Promise<ClientModelType> => {
       try {
         const id = args.id;
         const deletedClient = await ClientModel.findByIdAndDelete(id);
@@ -15,7 +15,7 @@ const deleteClient = {
             extensions: { code: "NOT_FOUND" },
           });
         }
-        return { id: deletedClient.id };
+        return deletedClient;
       } catch (error) {
         throw new GraphQLError(`Error: ${error}`);
       }
