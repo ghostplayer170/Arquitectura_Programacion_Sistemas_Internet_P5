@@ -6,7 +6,7 @@ const deleteClient = {
     deleteClient: async (
       _: unknown,
       args: { id: string },
-    ): Promise<string> => {
+    ): Promise<{id: string}> => {
       try {
         const id = args.id;
         const deletedClient = await ClientModel.findByIdAndDelete(id);
@@ -15,7 +15,7 @@ const deleteClient = {
             extensions: { code: "NOT_FOUND" },
           });
         }
-        return `Client with ${id} deleted`;
+        return { id: deletedClient.id };
       } catch (error) {
         throw new GraphQLError(`Error: ${error}`);
       }
