@@ -4,11 +4,13 @@ import { GraphQLError } from "graphql";
 import { validatorsClient } from "../validators/valClient.ts";
 import { TravelModel } from "../schemas/travel.ts";
 
+// Middleware for validate a card before save
 export const cardPreSave = async function (
   this: ClientModelType,
   next: () => void,
 ) {
   try {
+    // Validate card format
     if (this.cards && this.cards.length !== 0) {
       const card: Card = this.cards[this.cards.length - 1];
       if (validatorsClient.cardNumberFormat(card.number)) {
@@ -48,6 +50,7 @@ export const cardPreSave = async function (
   }
 };
 
+// Middleware for delete references of a client after delete
 export const clientPostDelete = async function (this: ClientModelType) {
   try {
     await TravelModel.updateMany(

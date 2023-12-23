@@ -2,6 +2,7 @@ import { DriverModelType } from "../schemas/driver.ts";
 import { GraphQLError } from "graphql";
 import { TravelModel } from "../schemas/travel.ts";
 
+// Middleware for delete all travels references of a driver after delete
 export const driverPostDelete = async function (this: DriverModelType) {
   try {
     await TravelModel.updateMany(

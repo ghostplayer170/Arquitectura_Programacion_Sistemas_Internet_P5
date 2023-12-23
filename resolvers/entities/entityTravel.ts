@@ -2,6 +2,7 @@ import { ClientModel, ClientModelType } from "../../db/schemas/client.ts";
 import { DriverModel, DriverModelType } from "../../db/schemas/driver.ts";
 import { TravelModelType } from "../../db/schemas/travel.ts";
 
+// Resolver for Travel.client and Travel.driver fields
 export const Travel = {
   client: async (parent: TravelModelType): Promise<ClientModelType | null>  => {
     const client = await ClientModel.findById(parent.client).exec();

@@ -5,6 +5,7 @@ import getDrivers from "./getDrivers.ts";
 import getTravel from "./getTravel.ts";
 import getTravels from "./getTravels.ts";
 
+// Group all queries in one object
 export const Query = {
   Query: { 
     ...getClient.Query,

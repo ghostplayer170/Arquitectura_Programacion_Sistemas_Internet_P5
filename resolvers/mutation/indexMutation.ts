@@ -7,6 +7,7 @@ import addTravel from "./addTravel.ts";
 import finishTravel from "./finishTravel.ts";
 import deleteCard from "./deleteCard.ts";
 
+// Group all mutations in one object
 export const Mutation = {
   Mutation: {
     ...addCard.Mutation,
