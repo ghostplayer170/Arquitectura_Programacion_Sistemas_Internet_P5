@@ -95,8 +95,10 @@ export const travelPostUpdate = async function (this: TravelModelType) {
           `Error: Client ${this.client} has no card with enough money`,
         );
       }
-      card.money -= this.money;
-      await client.save();
+      await ClientModel.updateOne(
+        { _id: this.client, cards: { $elemMatch: card } },
+        { $inc: { "cards.$.money": -this.money } },
+      );
     }
   } catch (error) {
     throw new GraphQLError(`Error: ${error}`);
