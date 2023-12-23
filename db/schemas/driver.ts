@@ -27,11 +27,6 @@ const DriverSchema = new Schema(
   },
 );
 
-export const DriverModel = mongoose.model<DriverModelType>(
-  "Driver",
-  DriverSchema,
-);
-
 // Validate name format (only letters and spaces) and length (2-30)
 DriverSchema.path("name").validate(
   validatorsDriver.nameFormat,
@@ -58,3 +53,8 @@ DriverSchema.path("username").validate(
 
 // Middleware for delete all travels of a driver before delete
 DriverSchema.post("findOneAndDelete", driverPostDelete);
+
+export const DriverModel = mongoose.model<DriverModelType>(
+  "Driver",
+  DriverSchema,
+);

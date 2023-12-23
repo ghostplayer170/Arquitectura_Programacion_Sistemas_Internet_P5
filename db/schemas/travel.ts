@@ -30,11 +30,6 @@ const TravelSchema = new Schema(
   },
 );
 
-export const TravelModel = mongoose.model<TravelModelType>(
-  "Travel",
-  TravelSchema,
-);
-
 // Validate if clientID exists in ClientModel
 TravelSchema.path("client").validate(
   validatorsTravel.clientIDExists,
@@ -85,3 +80,8 @@ TravelSchema.post("save", travelPostSave);
 
 // Middleware for delete travel ID in client and driver
 TravelSchema.post("findOneAndUpdate", travelPostUpdate);
+
+export const TravelModel = mongoose.model<TravelModelType>(
+  "Travel",
+  TravelSchema,
+);

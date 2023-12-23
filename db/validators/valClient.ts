@@ -38,7 +38,7 @@ const cardExists = async (number: string) => {
 // Validate card number format (16 digits)
 const cardNumberFormat = (number: string) => {
   const re = /^[0-9]{16}$/;
-  return re.test(number.toString());
+  return re.test(number);
 };
 
 // Validate card cvv format (3 digits)
