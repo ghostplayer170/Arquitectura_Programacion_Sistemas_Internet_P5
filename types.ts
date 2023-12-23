@@ -6,6 +6,14 @@ export type Client = {
     travels: Array<Omit<Travel, 'client'>>;
 };
 
+export type ClientAPI = {
+    id: string;
+    name: string;
+    email: string;
+    cards: Card[];
+    travels: Array<Omit<Travel, 'client'>>;
+};
+
 export type Card = {
     number: string;
     cvv: number;
@@ -23,8 +31,8 @@ export type Driver = {
 
 export type Travel = {
     id: string;
-    client: Omit<Client, 'travels'>;
-    driver: Omit<Driver, 'travels'>;
+    client: Omit<Client, 'travels'> | null;
+    driver: Omit<Driver, 'travels'> | null;
     money: number;
     distance: number;
     date: string;
