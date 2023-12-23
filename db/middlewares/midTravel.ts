@@ -1,3 +1,4 @@
+import { Card } from "../../types.ts";
 import { ClientModel } from "../schemas/client.ts";
 import { DriverModel } from "../schemas/driver.ts";
 import { TravelModel, TravelModelType } from "../schemas/travel.ts";
@@ -31,7 +32,7 @@ export const travelPreSave = async function (
       if (client.cards.length === 0) {
         throw new GraphQLError(`Error: Client ${this.client} has no cards`);
       }
-      if (client.cards.some((card) => card.money > this.money)) {
+      if (client.cards.some((card: Card) => card.money < this.money)) {
         throw new GraphQLError(
           `Error: Client ${this.client} has no card with enough money`,
         );
