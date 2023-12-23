@@ -17,7 +17,12 @@ export const travelPreSave = async function (
       if (driver.travels.length > 0) {
         const lastTravelID = driver.travels[driver.travels.length - 1];
         const lastTravel = await TravelModel.findById(lastTravelID).exec();
-        if (lastTravel?.status === "IN_PROGRESS") {
+        if (!lastTravel) {
+          throw new GraphQLError(
+            `Error: Driver ${this.driver} has a travel that does not exist`,
+          );
+        }
+        if (lastTravel.status === "IN_PROGRESS") {
           throw new GraphQLError(
             `Error: Driver ${this.driver} has a travel in progress`,
           );
