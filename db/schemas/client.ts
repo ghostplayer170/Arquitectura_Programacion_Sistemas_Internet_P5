@@ -17,7 +17,7 @@ const ClientSchema = new Schema(
     cards: {
       type: [
         {
-          number: { type: Number, required: true },
+          number: { type: String, required: true },
           cvv: { type: Number, required: true },
           expirity: { type: String, required: true },
           money: { type: Number, required: true },
