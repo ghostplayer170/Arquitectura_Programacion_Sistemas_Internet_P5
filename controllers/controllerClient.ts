@@ -1,11 +1,14 @@
 
 import { ClientModelType } from "../db/schemas/client.ts";
+import { ClientApi } from "../types.ts";
 
-export const clientModeltoClient = (clientDoc: ClientModelType) => {
-    // Convert Mongoose document to plain JavaScript object
-    const clientObj = clientDoc.toObject();
-    // Rename _id to id
-    clientObj.id = clientObj._id;
-    delete clientObj._id;
-    return clientObj;
+export const clientModeltoClientApi = (client: ClientModelType) => {
+    const Client: ClientApi = {
+        id: client.id.toString(),
+        name: client.name,
+        email: client.email,
+        cards: client.cards,
+        travels: client.travels.map((travel) => travel.toString()),
+    };
+    return Client;
 }
