@@ -26,10 +26,9 @@ const emailFormat = (email: string) => {
 // Validate if card exists in ClientModel
 const cardExists = async (number: string) => {
   try {
-    const client = await ClientModel.findOne({
-      cards: { $elemMatch: number },
-    }).exec();
-    return !!client;
+    const client = await ClientModel.findOne({ cards: { $elemMatch: { number } } }).exec();
+    if (client) return false;
+    return true;
   } catch (_e) {
     return false;
   }
