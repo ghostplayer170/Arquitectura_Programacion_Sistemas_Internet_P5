@@ -64,7 +64,7 @@ export const clientPreDelete = function (
   next: () => void,
 ) {
   try {
-    this.travels.forEach(async (travelID) => {
+    Promise.all(this.travels.map(async (travelID) => {
       const travel = await TravelModel.findById(travelID).exec();
       if (!travel) {
         throw new GraphQLError(`Error: Travel ${travelID} does not exist`);
@@ -74,8 +74,7 @@ export const clientPreDelete = function (
           `Error: Client ${this._id} has a travel in progress`,
         );
       }
-    });
-    next();
+    })).then(() => next());
   } catch (error) {
     throw new GraphQLError(`Error: ${error}`);
   }
