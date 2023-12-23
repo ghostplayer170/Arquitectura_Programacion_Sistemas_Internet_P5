@@ -1,4 +1,4 @@
-import { Card, Status } from "../../types.ts";
+import { Card } from "../../types.ts";
 import { ClientModel } from "../schemas/client.ts";
 import { DriverModel } from "../schemas/driver.ts";
 import { TravelModel, TravelModelType } from "../schemas/travel.ts";
@@ -71,6 +71,14 @@ export const travelPostSave = async function (this: TravelModelType) {
       { _id: this.client },
       { $push: { travels: this._id } },
     );
+    const client = await ClientModel.findById(this.client).exec();
+    if (client) {
+      const card = client.cards.find((card: Card) => card.money >= this.money);
+      if (card) {
+        card.money -= this.money;
+        await client.save();
+      }
+    }
     if (!clientUpdated) {
       throw new GraphQLError(`Error: Client ${this.client} does not exist`);
     }
