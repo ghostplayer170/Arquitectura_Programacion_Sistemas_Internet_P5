@@ -1,7 +1,7 @@
 import mongoose from "npm:mongoose@7.6.3";
 import { Driver } from "../../types.ts";
 import { validatorsDriver } from "../validators/valDriver.ts";
-import { driverPostDelete, driverPreDelete} from "../middlewares/midDriver.ts";
+import { driverPostDelete} from "../middlewares/midDriver.ts";
 
 export type DriverModelType =
   & mongoose.Document
@@ -53,9 +53,6 @@ DriverSchema.path("username").validate(
 
 // Middleware for delete all travels of a driver before delete
 DriverSchema.post("findOneAndDelete", driverPostDelete);
-
-// Middleware for verify if driver has travels in progress before delete
-DriverSchema.pre("findOneAndDelete", driverPreDelete);
 
 export const DriverModel = mongoose.model<DriverModelType>(
   "Driver",
