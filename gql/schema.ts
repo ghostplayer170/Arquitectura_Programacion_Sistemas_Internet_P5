@@ -5,7 +5,7 @@ export const typeDefs = `#graphql
     name: String!
     email: String!
     cards: [Card!]!
-    travels: [Travel!]!
+    travels: [Travel!]
   }
 
   type Card { 
@@ -20,13 +20,13 @@ export const typeDefs = `#graphql
     name: String!
     email: String!
     username: String!
-    travels: [Travel!]!
+    travels: [Travel!]
   }
 
   type Travel { 
     id: ID!
-    client: Client!
-    driver: Driver!
+    client: Client
+    driver: Driver
     money: Float!
     distance: Float!
     date: String!
