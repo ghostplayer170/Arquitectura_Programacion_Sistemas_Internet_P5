@@ -75,7 +75,8 @@ export const clientPreDelete = function (
             `Error: Client ${this._id} has a travel in progress`,
           );
         }
-      })).then(() => next());
+      }));
+      next();
     } else {
       next();
     }
