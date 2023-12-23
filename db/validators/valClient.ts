@@ -24,7 +24,7 @@ const emailFormat = (email: string) => {
 };
 
 // Validate if card exists in ClientModel
-const cardExists = async (number: number) => {
+const cardExists = async (number: string) => {
   try {
     const client = await ClientModel.findOne({
       cards: { $elemMatch: number },
@@ -36,7 +36,7 @@ const cardExists = async (number: number) => {
 };
 
 // Validate card number format (16 digits)
-const cardNumberFormat = (number: number) => {
+const cardNumberFormat = (number: string) => {
   const re = /^[0-9]{16}$/;
   return re.test(number.toString());
 };

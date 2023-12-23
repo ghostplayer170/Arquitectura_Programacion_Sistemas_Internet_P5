@@ -58,15 +58,15 @@ export const travelPostSave = async function (this: TravelModelType) {
       { _id: this.driver },
       { $push: { travels: this._id } },
     );
+    if (!driverUpdated) {
+      throw new GraphQLError(`Error: Driver ${this.driver} does not exist`);
+    }
     const clientUpdated = await ClientModel.updateOne(
       { _id: this.client },
       { $push: { travels: this._id } },
     );
     if (!clientUpdated) {
       throw new GraphQLError(`Error: Client ${this.client} does not exist`);
-    }
-    if (!driverUpdated) {
-      throw new GraphQLError(`Error: Driver ${this.driver} does not exist`);
     }
   } catch (error) {
     throw new GraphQLError(`Error: ${error}`);

@@ -7,7 +7,7 @@ export type Client = {
 };
 
 export type Card = {
-    number: number;
+    number: string;
     cvv: number;
     expirity: string;
     money: number;
