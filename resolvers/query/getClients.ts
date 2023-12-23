@@ -1,9 +1,11 @@
 import { GraphQLError } from "graphql";
-import { ClientModel, ClientModelType } from "../../db/schemas/client.ts";
+import { ClientModel } from "../../db/schemas/client.ts";
+import { clientModeltoClientApi } from "../../controllers/controllerClient.ts";
+import { ClientApi } from "../../types.ts";
 
 const getClients = {
   Query: {
-    getClients: async (): Promise<ClientModelType[]> => {
+    getClients: async (): Promise<ClientApi[]> => {
       try {
         const Clients = await ClientModel.find().exec();
         if (!Clients) {
@@ -11,7 +13,7 @@ const getClients = {
             extensions: { code: "NOT_FOUND" },
           });
         }
-        return Clients;
+        return Clients.map((Client) => clientModeltoClientApi(Client));
       } catch (error) {
         throw new GraphQLError(`Error: ${error}`);
       }
