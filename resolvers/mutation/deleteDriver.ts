@@ -1,12 +1,12 @@
 import { GraphQLError } from "graphql";
-import { DriverModel } from "../../db/schemas/driver.ts";
+import { DriverModel, DriverModelType } from "../../db/schemas/driver.ts";
 
 const deleteDriver = {
   Mutation: {
     deleteDriver: async (
       _: unknown,
       args: { id: string },
-    ): Promise<string> => {
+    ): Promise<DriverModelType | null> => {
       try {
         const id = args.id;
         const deletedDriver = await DriverModel.findByIdAndDelete(id);
@@ -15,7 +15,7 @@ const deleteDriver = {
             extensions: { code: "NOT_FOUND" },
           });
         }
-        return `Driver with ${id} deleted`;
+        return deletedDriver;
       } catch (error) {
         throw new GraphQLError(`Error: ${error}`);
       }

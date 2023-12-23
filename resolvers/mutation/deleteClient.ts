@@ -6,7 +6,7 @@ const deleteClient = {
     deleteClient: async (
       _: unknown,
       args: { id: string },
-    ): Promise<ClientModelType> => {
+    ): Promise<ClientModelType | null> => {
       try {
         const id = args.id;
         const deletedClient = await ClientModel.findByIdAndDelete(id);
